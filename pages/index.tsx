@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Header, Banner, Row, Modal } from "../components";
+import { Header, Banner, Row, Modal, Plans } from "../components";
 import requests from "../utils/requests";
 import { Movie } from "../typings";
 import useAuth from "../hooks/useAuth";
@@ -29,8 +29,11 @@ const Home = ({
 }: Props) => {
   const { loading } = useAuth();
   const showModal = useRecoilValue(modalState);
+  const subscription = false;
 
-  if (loading === null) return null;
+      if (loading || subscription === null) return null
+
+  if (!subscription) return <Plans />
 
   return (
     <div
