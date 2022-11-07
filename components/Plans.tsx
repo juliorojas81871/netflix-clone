@@ -2,9 +2,16 @@ import Head from "next/head";
 import Link from "next/link";
 import useAuth from "../hooks/useAuth";
 import { CheckIcon } from "@heroicons/react/outline";
+import { Product } from '@stripe/firestore-stripe-payments'
+import { useState } from 'react'
 
-const Plans = () => {
+interface Props {
+  products: Product[]
+}
+
+const Plans = ({ products }: Props) => {
   const { logout } = useAuth();
+  const [selectedPlan, setSelectedPlan] = useState<Product | null>(products[2])
 
   return (
     <div>
@@ -29,6 +36,7 @@ const Plans = () => {
           Sign Out
         </button>
       </header>
+
       <main className="mx-auto max-w-5xl px-5 pt-28 pb-12 transition-all md:px-10">
         <h1 className="mb-3 text-3xl font-medium">
           Choose the plan that's right for you
@@ -47,7 +55,22 @@ const Plans = () => {
             your plan anytime.
           </li>
         </ul>
-        
+
+        <div className="mt-4 flex flex-col space-y-4">
+          <div className="flex w-full items-center justify-center self-end md:w-3/5">
+          {products.map((product) => (
+              <div
+                className={`planBox ${
+                  selectedPlan?.id === product.id ? 'opacity-100' : 'opacity-60'
+                }`}
+                key={product.id}
+                onClick={() => setSelectedPlan(product)}
+              >
+                {product.name}
+              </div>
+            ))}
+          </div>
+        </div>
       </main>
     </div>
   );
