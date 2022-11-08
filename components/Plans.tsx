@@ -2,16 +2,18 @@ import Head from "next/head";
 import Link from "next/link";
 import useAuth from "../hooks/useAuth";
 import { CheckIcon } from "@heroicons/react/outline";
-import { Product } from '@stripe/firestore-stripe-payments'
-import { useState } from 'react'
+import { Product } from "@stripe/firestore-stripe-payments";
+import { useState } from "react";
+import { Table, Loader } from "./index";
 
 interface Props {
-  products: Product[]
+  products: Product[];
 }
 
 const Plans = ({ products }: Props) => {
   const { logout } = useAuth();
-  const [selectedPlan, setSelectedPlan] = useState<Product | null>(products[2])
+  const [selectedPlan, setSelectedPlan] = useState<Product | null>(products[2]);
+  const [isBillingLoading, setBillingLoading] = useState(false);
 
   return (
     <div>
@@ -58,10 +60,10 @@ const Plans = ({ products }: Props) => {
 
         <div className="mt-4 flex flex-col space-y-4">
           <div className="flex w-full items-center justify-center self-end md:w-3/5">
-          {products.map((product) => (
+            {products.map((product) => (
               <div
                 className={`planBox ${
-                  selectedPlan?.id === product.id ? 'opacity-100' : 'opacity-60'
+                  selectedPlan?.id === product.id ? "opacity-100" : "opacity-60"
                 }`}
                 key={product.id}
                 onClick={() => setSelectedPlan(product)}
@@ -70,6 +72,19 @@ const Plans = ({ products }: Props) => {
               </div>
             ))}
           </div>
+          <Table products={products} selectedPlan={selectedPlan} />
+          <button
+            disabled={!selectedPlan || isBillingLoading}
+            className={`mx-auto w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[420px] ${
+              isBillingLoading && 'opacity-60'
+            }`}
+          >
+            {isBillingLoading ? (
+              <Loader color="dark:fill-gray-300" />
+            ) : (
+              'Subscribe'
+            )}
+          </button>
         </div>
       </main>
     </div>
