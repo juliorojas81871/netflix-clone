@@ -1,4 +1,4 @@
-// The hook that check the subscription and change the user to true awhen active or traliing 
+// The hook that check the subscription and change the user to true awhen active or 
 import { useEffect, useState } from 'react'
 import {
   onCurrentUserSubscriptionUpdate,

@@ -30,6 +30,7 @@ const goToBillingPortal = async () => {
   await functionRef({
     returnUrl: `${window.location.origin}/account`,
   })
+    // any is bad for production and shouldn't be used
     .then(({ data }: any) => window.location.assign(data.url))
     .catch((error) => console.log(error.message));
 };
