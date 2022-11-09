@@ -1,27 +1,53 @@
-# Next.js + Tailwind CSS Example
+# Netflix Clone
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+## Description
 
-## Deploy your own
+This code is a Netflix clone where users can buy a subscription using Stripe to service, look at trailers and descriptions, cancel/update subscriptions, and save users videos they want in 'My List.'
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+If anyone want see this code, [please click at this link](https://netflix-clone-bzaptwtwf-juliorojas81871.vercel.app/).
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+## Technologies & Methods Used
 
-## How to use
+NextJS, TailwindCSS, React, Hooks, Stripe Checkout, Firebase, NextAuth, TypeScript, Recoil, MaterialUI, Heroicons
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+## Steps to get code to run:
+1. Open terminal
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
+2. Type (You can also download the code):
+```
+git clone https://github.com/juliorojas81871/netflix-clone
 ```
 
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
+3. Make sure that you are in the right folder, if not cd to it.
+
+4. Type: 
+```
+npm i
+```
+5. Change the .env-example to .env.local and fill each values out
+
+6. Go to https://dashboard.stripe.com/ and create an account
+
+7. In Firebase upgrade to Blaze and install in stripe extensions
+
+8. Got to https://console.firebase.google.com/u/1/project/netflix-clone-9b93f/extensions/instances/firestore-stripe-payments?consoleUI=FIREBASE&tab=usage and complete 'Configure the Stripe customer portal (only used for subscriptions)', 'Configure Stripe webhooks', and 'Set your Cloud Firestore security rules'
+
+9. In security rules you mightg need to add
+```
+match /myList/{id} {
+    allow read, write: if request.auth.uid == uid;
+}
 ```
 
-```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
+10. Type: 
+```
+npm run dev
+```
+11. Go to browser and type at the address bar: 
+
+```
+http://localhost:3000/
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Example Pic:
+![Netflix Clone Example Pic](https://github.com/juliorojas81871/netflix-clone/blob/main/pics/main.jpg)
