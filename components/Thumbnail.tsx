@@ -1,15 +1,16 @@
 import { Movie } from "../typings";
 import Image from "next/image";
-import { modalState, movieState } from '../atoms/modalAtom'
-import { useRecoilState } from 'recoil'
+import { modalState, movieState } from "../atoms/modalAtom";
+import { useRecoilState } from "recoil";
+import { DocumentData } from "firebase/firestore";
 
 interface Props {
-  movie: Movie;
+  movie: Movie | DocumentData;
 }
 
 const Thumbnail = ({ movie }: Props) => {
-  const [currentMovie, setCurrentMovie] = useRecoilState(movieState)
-  const [showModal, setShowModal] = useRecoilState(modalState)
+  const [currentMovie, setCurrentMovie] = useRecoilState(movieState);
+  const [showModal, setShowModal] = useRecoilState(modalState);
 
   return (
     <div

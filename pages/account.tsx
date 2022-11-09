@@ -5,21 +5,20 @@ import useAuth from "../hooks/useAuth";
 import { GetStaticProps } from "next";
 import { getProducts, Product } from "@stripe/firestore-stripe-payments";
 import payments, { goToBillingPortal } from "../lib/stripe";
-import {Membership} from '../components'
-import {useState} from 'react';
+import { Membership, Plans } from "../components";
 
 interface Props {
   products: Product[];
 }
 
 const account = ({ products }: Props) => {
-  console.log(products)
-  const { user, logout, loading } = useAuth()
-  const subscription = useSubscription(user)
+  const { user, logout, loading } = useAuth();
+  const subscription = useSubscription(user);
 
-  if (loading) return null
+  if (loading || subscription === null) return null;
 
-  console.log(subscription)
+  if (!subscription) return <Plans products={products} />;
+
   return (
     <div className="">
       <Head>
@@ -29,7 +28,7 @@ const account = ({ products }: Props) => {
       <header className={`bg-[#141414]`}>
         <Link href="/">
           <img
-            src="https://rb.gy/ulxxee"
+            src="/assets/netflix_logo2.svg"
             width={120}
             height={120}
             className="cursor-pointer object-contain"
@@ -37,7 +36,7 @@ const account = ({ products }: Props) => {
         </Link>
         <Link href="/account">
           <img
-            src="https://rb.gy/g1pwyx"
+            src="/assets/user.png"
             alt=""
             className="cursor-pointer rounded"
           />
@@ -47,7 +46,7 @@ const account = ({ products }: Props) => {
         <div className="flex flex-col gap-x-4 md:flex-row md:items-center">
           <h1 className="text-3xl md:text-4xl">Account</h1>
           <div className="-ml-0.5 flex items-center gap-x-1.5">
-            <img src="https://rb.gy/4vfk4r" alt="" className="h-7 w-7" />
+            <img src="/assets/membersince.svg" alt="" className="h-7 w-7" />
             <p className="text-xs font-semibold text-[#555]">
               Member since {subscription?.created}
             </p>
@@ -85,8 +84,8 @@ const account = ({ products }: Props) => {
         </div>
       </main>
     </div>
-  )
-}
+  );
+};
 
 export default account;
 

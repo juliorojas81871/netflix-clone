@@ -3,10 +3,10 @@ import { CheckIcon } from "@heroicons/react/outline";
 
 interface Props {
   products: Product[];
-  selectedPlan: Product | null
+  selectedPlan: Product | null;
 }
 
-const Table = ({ products, selectedPlan  }: Props) => {
+const Table = ({ products, selectedPlan }: Props) => {
   return (
     <table>
       <tbody className="divide-y divide-[gray]">

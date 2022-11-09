@@ -5,23 +5,23 @@ import { CheckIcon } from "@heroicons/react/outline";
 import { Product } from "@stripe/firestore-stripe-payments";
 import { useState } from "react";
 import { Table, Loader } from "./index";
-import { loadCheckout } from '../lib/stripe'
+import { loadCheckout } from "../lib/stripe";
 
 interface Props {
   products: Product[];
 }
 
 const Plans = ({ products }: Props) => {
-  const { logout, user } = useAuth()
+  const { logout, user } = useAuth();
   const [selectedPlan, setSelectedPlan] = useState<Product | null>(products[2]);
   const [isBillingLoading, setBillingLoading] = useState(false);
-  
-  const subscribeToPlan = () => {
-    if (!user) return
 
-    loadCheckout(selectedPlan?.prices[0].id!)
-    setBillingLoading(true)
-  }
+  const subscribeToPlan = () => {
+    if (!user) return;
+
+    loadCheckout(selectedPlan?.prices[0].id!);
+    setBillingLoading(true);
+  };
 
   return (
     <div>
@@ -84,14 +84,14 @@ const Plans = ({ products }: Props) => {
           <button
             disabled={!selectedPlan || isBillingLoading}
             className={`mx-auto w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[420px] ${
-              isBillingLoading && 'opacity-60'
+              isBillingLoading && "opacity-60"
             }`}
             onClick={subscribeToPlan}
           >
             {isBillingLoading ? (
               <Loader color="dark:fill-gray-300" />
             ) : (
-              'Subscribe'
+              "Subscribe"
             )}
           </button>
         </div>

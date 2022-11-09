@@ -29,11 +29,10 @@ const Membership = () => {
         >
           {isBillingLoading ? (
             <Loader color="dark:fill-[#e50914]" />
+          ) : subscription?.cancel_at_period_end ? (
+            "Renew Membership"
           ) : (
-            subscription?.cancel_at_period_end
-                ? "Renew Membership"
-                : "Cancel Membership"
-            
+            "Cancel Membership"
           )}
         </button>
       </div>

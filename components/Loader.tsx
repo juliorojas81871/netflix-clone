@@ -16,7 +16,7 @@ const Loader = ({ color }: { color: string }) => {
         fill="currentFill"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default Loader
+export default Loader;
