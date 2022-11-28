@@ -6,6 +6,9 @@ This code is a Netflix clone where users can buy a subscription using Stripe to 
 
 If anyone want see this code, [please click at this link](https://netflix-clone-bzaptwtwf-juliorojas81871.vercel.app/).
 
+The Credit Card number to use is 4242 4242 4242 4242.
+The expiration, CVC, name, and address can be anything you want.
+
 ## Technologies & Methods Used
 
 NextJS, TailwindCSS, React, Hooks, Stripe Checkout, Firebase, NextAuth, TypeScript, Recoil, MaterialUI, Heroicons

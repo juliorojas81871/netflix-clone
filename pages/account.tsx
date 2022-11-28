@@ -23,7 +23,7 @@ const account = ({ products }: Props) => {
     <div className="">
       <Head>
         <title>Account Settings - Netflix</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/netflix-icon-logo.png" />
       </Head>
       <header className={`bg-[#141414]`}>
         <Link href="/">
